@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -23,21 +22,30 @@ func main() {
 		id := idCounter
 		course := Course{}
 		if err := c.ShouldBind(&course); err != nil {
-			c.String(http.StatusBadRequest, "Bad request error")
+			c.JSON(http.StatusBadRequest, gin.H{
+				"title":    "Bad request",
+				"type":     "about:blank",
+				"status":   http.StatusBadRequest,
+				"detail":   "Could not create the course",
+				"instance": "/courses",
+			})
 			return
 		}
+
 		// Store the course
 		coursesById[id] = course
 
+		data := make(map[string]interface{})
+		data["description"] = course.Description
+		data["title"] = course.Title
+		data["id"] = id
+
+		c.JSON(http.StatusCreated, gin.H{
+			"data": data,
+		})
+
 		// Increment the counter
 		idCounter += 1
-
-		c.String(http.StatusCreated, "Course created successfully")
-
-		// Debugging stuff
-		for id, course := range coursesById {
-			fmt.Println("id: ", id, "course.title: ", course.Title, "course.descr: ", course.Description)
-		}
 	})
 
 	r.Run()
