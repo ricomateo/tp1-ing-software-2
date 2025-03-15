@@ -1,11 +1,24 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
+const SWAGGER_URL string = "https://editor.swagger.io"
+
 func main() {
+	host := os.Getenv("HOST")
+	if host == "" {
+		log.Fatal("Missing required environment variable HOST")
+	}
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("Missing required environment variable PORT")
+	}
 	r := gin.Default()
 	state := State{
 		Courses:   make([]Course, 0),
@@ -13,7 +26,7 @@ func main() {
 	}
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"https://editor.swagger.io"}
+	config.AllowOrigins = []string{SWAGGER_URL}
 
 	r.Use(cors.New(config))
 
@@ -23,6 +36,6 @@ func main() {
 	r.GET("/courses", func(c *gin.Context) {
 		GetCoursesHandler(c, &state)
 	})
-
-	r.Run()
+	address := host + ":" + port
+	r.Run(address)
 }
