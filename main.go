@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +15,10 @@ func main() {
 
 	idCounter := Id(0)
 	coursesById := make(map[Id]Course)
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"https://editor.swagger.io"}
 
+	r.Use(cors.New(config))
 	r.POST("/courses", func(c *gin.Context) {
 		id := idCounter
 		course := Course{}
@@ -35,5 +39,6 @@ func main() {
 			fmt.Println("id: ", id, "course.title: ", course.Title, "course.descr: ", course.Description)
 		}
 	})
+
 	r.Run()
 }
