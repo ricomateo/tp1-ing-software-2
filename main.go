@@ -7,19 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Id = uint64
-
 func main() {
 	r := gin.Default()
 
-	idCounter := Id(0)
-	coursesById := make(map[Id]Course)
+	idCounter := uint64(0)
+	courses := make([]Course, 0)
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"https://editor.swagger.io"}
 
 	r.Use(cors.New(config))
 	r.POST("/courses", func(c *gin.Context) {
-		id := idCounter
 		course := Course{}
 		if err := c.ShouldBind(&course); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
@@ -31,21 +28,23 @@ func main() {
 			})
 			return
 		}
+		course.Id = idCounter
 
 		// Store the course
-		coursesById[id] = course
-
-		data := make(map[string]interface{})
-		data["description"] = course.Description
-		data["title"] = course.Title
-		data["id"] = id
+		courses = append(courses, course)
 
 		c.JSON(http.StatusCreated, gin.H{
-			"data": data,
+			"data": course,
 		})
 
 		// Increment the counter
 		idCounter += 1
+	})
+
+	r.GET("/courses", func(c *gin.Context) {
+		c.JSON(http.StatusCreated, gin.H{
+			"data": courses,
+		})
 	})
 
 	r.Run()
