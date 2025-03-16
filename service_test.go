@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"net/http"
+	"os"
 	"strings"
 	"testing"
 	"time"
@@ -10,15 +11,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const HOST string = "0.0.0.0"
-const PORT string = "8080"
-const URL string = "http://" + HOST + ":" + PORT
-
 func TestCreateCourse(t *testing.T) {
-	go StartService(HOST, PORT)
-
 	time.Sleep(1 * time.Second)
-	url := URL + "/courses"
+	host := os.Getenv("HOST")
+	assert.NotEqual(t, "", host, "Missing required environment variable HOST")
+	port := os.Getenv("PORT")
+	assert.NotEqual(t, "", port, "Missing required environment variable PORT")
+	url := "http://" + host + ":" + port + "/courses"
 
 	t.Run("Create course", func(t *testing.T) {
 		course := `{"title":"test title","description":"test description"}`
