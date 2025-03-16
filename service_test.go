@@ -89,4 +89,40 @@ func TestCreateCourse(t *testing.T) {
 		assert.Equal(t, expectedResponse, string(body))
 		resp.Body.Close()
 	})
+
+	t.Run("Delete course", func(t *testing.T) {
+		id := "0"
+		client := &http.Client{}
+		req, err := http.NewRequest("DELETE", url+"/"+id, nil)
+		assert.NoError(t, err)
+
+		resp, err := client.Do(req)
+		assert.NoError(t, err)
+
+		body, err := io.ReadAll(resp.Body)
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusNoContent, resp.StatusCode)
+
+		expectedResponse := ""
+		assert.Equal(t, expectedResponse, string(body))
+		resp.Body.Close()
+	})
+
+	t.Run("Check that deleting a non existing course returns an error", func(t *testing.T) {
+		id := "0"
+		client := &http.Client{}
+		req, err := http.NewRequest("DELETE", url+"/"+id, nil)
+		assert.NoError(t, err)
+
+		resp, err := client.Do(req)
+		assert.NoError(t, err)
+
+		body, err := io.ReadAll(resp.Body)
+		assert.NoError(t, err)
+		assert.Equal(t, http.StatusNotFound, resp.StatusCode)
+
+		expectedResponse := `{"detail":"The course with ID 0 was not found","instance":"/courses/0","status":404,"title":"Course not found","type":"about:blank"}`
+		assert.Equal(t, expectedResponse, string(body))
+		resp.Body.Close()
+	})
 }

@@ -30,6 +30,11 @@ func StartService(host, port string) {
 	r.GET("/courses/:id", func(c *gin.Context) {
 		GetCourseHandler(c, &state)
 	})
+
+	r.DELETE("/courses/:id", func(c *gin.Context) {
+		DeleteCourseHandler(c, &state)
+	})
+
 	address := host + ":" + port
 	r.Run(address)
 }

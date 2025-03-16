@@ -59,3 +59,25 @@ func GetCourseHandler(c *gin.Context, state *State) {
 		"instance": "/courses/" + id,
 	})
 }
+
+func DeleteCourseHandler(c *gin.Context, state *State) {
+	id := c.Param("id")
+
+	// Search for the course
+	for index, course := range state.Courses {
+		courseId := strconv.Itoa(int(course.Id))
+		if courseId == id {
+			// Remove the course from the array
+			state.Courses = RemoveCourseWithIndex(state.Courses, index)
+			c.JSON(http.StatusNoContent, nil)
+			return
+		}
+	}
+	c.JSON(http.StatusNotFound, gin.H{
+		"title":    "Course not found",
+		"type":     "about:blank",
+		"status":   http.StatusNotFound,
+		"detail":   "The course with ID " + id + " was not found",
+		"instance": "/courses/" + id,
+	})
+}

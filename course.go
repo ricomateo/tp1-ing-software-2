@@ -14,3 +14,7 @@ func ReverseCourses(courses []Course) []Course {
 	}
 	return reversedCourses
 }
+
+func RemoveCourseWithIndex(courses []Course, index int) []Course {
+	return append(courses[:index], courses[index+1:]...)
+}
