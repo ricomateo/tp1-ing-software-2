@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 	"testing"
-	"time"
 
 	"log"
 
@@ -14,7 +13,6 @@ import (
 )
 
 func TestCreateCourse(t *testing.T) {
-	time.Sleep(1 * time.Second)
 	host := os.Getenv("HOST")
 	assert.NotEqual(t, "", host, "Missing required environment variable HOST")
 	port := os.Getenv("PORT")
