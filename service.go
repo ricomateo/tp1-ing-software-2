@@ -22,8 +22,13 @@ func StartService(host, port string) {
 	r.POST("/courses", func(c *gin.Context) {
 		CreateCourseHandler(c, &state)
 	})
+
 	r.GET("/courses", func(c *gin.Context) {
 		GetCoursesHandler(c, &state)
+	})
+
+	r.GET("/courses/:id", func(c *gin.Context) {
+		GetCourseHandler(c, &state)
 	})
 	address := host + ":" + port
 	r.Run(address)
