@@ -1,3 +1,4 @@
+include .env
 
 server_image: 
 	docker build . -f Dockerfile -t server
@@ -9,8 +10,8 @@ start_server:
 	docker run --rm -it \
 		--network classconnect \
 		--name server \
-		-e HOST=0.0.0.0 \
-		-e PORT=8080 -p 8080:8080 server
+		-e HOST=$(HOST) \
+		-e PORT=$(PORT) -p $(PORT):$(PORT) server
 
 docker_network:
 	docker network create classconnect
