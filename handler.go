@@ -33,6 +33,6 @@ func CreateCourseHandler(c *gin.Context, state *State) {
 
 func GetCoursesHandler(c *gin.Context, state *State) {
 	c.JSON(http.StatusCreated, gin.H{
-		"data": state.Courses,
+		"data": ReverseCourses(state.Courses),
 	})
 }

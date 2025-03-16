@@ -5,3 +5,12 @@ type Course struct {
 	Description string `json:"description" binding:"required"`
 	Id          uint64 `json:"id"`
 }
+
+func ReverseCourses(courses []Course) []Course {
+	lenCourses := len(courses)
+	reversedCourses := make([]Course, lenCourses)
+	for i := 0; i < len(courses); i++ {
+		reversedCourses[i] = courses[lenCourses-1-i]
+	}
+	return reversedCourses
+}
