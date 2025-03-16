@@ -1,16 +1,12 @@
 services:
   server:
     image: server
-    environment: 
-      - HOST=0.0.0.0
-      - PORT=8080
-    ports:
-      - "8080:8080" 
+    env_file: .env
 
   test:
     image: test
+    env_file: .env
     environment: 
       - HOST=server
-      - PORT=8080
     depends_on:
       - server
