@@ -1,0 +1,12 @@
+services:
+  server:
+    image: server
+    env_file: .env
+
+  test:
+    image: test
+    env_file: .env
+    environment: 
+      - HOST=server
+    depends_on:
+      - server
