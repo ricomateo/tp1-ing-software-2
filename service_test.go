@@ -12,6 +12,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// TestService tests all the endpoints of the server in different situations,
+// both checking for the happy path and the error path.
 func TestService(t *testing.T) {
 	host := os.Getenv("HOST")
 	assert.NotEqual(t, "", host, "Missing required environment variable HOST")

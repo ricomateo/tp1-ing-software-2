@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// StartService starts the http server which listens for requests in the given host and port.
 func StartService(host, port string) {
 	r := gin.Default()
 	state := State{
