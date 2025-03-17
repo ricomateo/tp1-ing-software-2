@@ -2,18 +2,24 @@ package main
 
 import (
 	"log"
-	"os"
 )
 
 func main() {
-	host := os.Getenv("HOST")
-	if host == "" {
-		log.Fatal("Missing required environment variable HOST")
+	logger := log.Default()
+
+	host, err := GetEnvVar("HOST")
+	if err != nil {
+		logger.Print("Error: ", err)
 	}
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("Missing required environment variable PORT")
+	port, err := GetEnvVar("PORT")
+	if err != nil {
+		logger.Print("Error: ", err)
+	}
+	environment, err := GetEnvVar("ENVIRONMENT")
+	if err != nil {
+		logger.Print("Error: ", err)
 	}
 
+	logger.Println("Enviroment: ", environment)
 	StartService(host, port)
 }

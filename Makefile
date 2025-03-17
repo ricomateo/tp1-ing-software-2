@@ -11,7 +11,9 @@ start_server:
 		--network classconnect \
 		--name server \
 		-e HOST=$(HOST) \
-		-e PORT=$(PORT) -p $(PORT):$(PORT) server
+		-e PORT=$(PORT) \
+		-e ENVIRONMENT=$(ENVIRONMENT) \
+		-p $(PORT):$(PORT) server
 
 docker_network:
 	docker network create classconnect
