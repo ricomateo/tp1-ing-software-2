@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCreateCourse(t *testing.T) {
+func TestService(t *testing.T) {
 	host := os.Getenv("HOST")
 	assert.NotEqual(t, "", host, "Missing required environment variable HOST")
 	port := os.Getenv("PORT")
