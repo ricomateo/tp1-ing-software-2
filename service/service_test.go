@@ -145,4 +145,5 @@ func TestService(t *testing.T) {
 		logger.Println("Received the expected error: ", string(body))
 
 	})
+	logger.Print("Tests ran successfully!")
 }
