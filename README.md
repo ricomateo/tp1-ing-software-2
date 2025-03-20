@@ -83,5 +83,6 @@ Los tests se pueden ejecutar con el siguiente comando
 make tests
 ```
 
+**Nota:** el comando requiere que ambas imágenes (del servicio y de los tests) hayan sido buildeadas previamente.
 Este comando ejecuta internamente `docker compose up` lo cual levanta el servicio y luego ejecuta una serie de tests que envian requests al servicio y chequean las respuestas.
  
