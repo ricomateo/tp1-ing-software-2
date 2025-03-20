@@ -2,10 +2,9 @@ FROM golang:1.23 as golang
 
 WORKDIR /usr/src/app
 
-COPY go.mod go.sum ./
+COPY service/ .
 RUN go mod download
 
-COPY . .
 RUN go build -v -o /usr/local/bin/app ./...
 
 FROM ubuntu:22.04
