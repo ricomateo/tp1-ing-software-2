@@ -1,10 +1,15 @@
 # tp1-ing-software-2
 
+// TODO: tabla de contenidos
+
 ## Introducción
 
 Para resolver este trabajo práctico se implementó una API REST-like en Go utilizando la librería gin-gonic. 
+
 Se incluyen 2 Dockerfiles, uno para buildear la imagen que corre el servicio, y otro para buildear la imagen que ejecuta los tests.
+
 Para ejecutar los tests se usa Docker Compose.
+
 La solución no cuenta con base de datos.
 
 ## Lo más desafiante del proyecto
@@ -13,7 +18,11 @@ En mi caso lo que me resultó más desafiante fue Docker, ya que no había tenid
 
 ## Prerrequisitos
 
+// TODO
+
 ## Tests
+
+// TODO
 
 ## Comandos para buildear las imágenes
 
