@@ -15,9 +15,6 @@ start_server:
 		-e ENVIRONMENT=$(ENVIRONMENT) \
 		-p $(PORT):$(PORT) server
 
-docker_network:
-	docker network create classconnect
-
 tests:
 	docker compose up --abort-on-container-exit
 	docker compose down
