@@ -22,7 +22,7 @@ La solución no cuenta con base de datos.
 
 ## Lo más desafiante del proyecto
 
-En mi caso lo que me resultó más desafiante fue Docker, ya que no había tenido suficiente experiencia previa con la herramienta.
+En mi caso lo que me resultó más desafiante fue el uso de Docker Compose, ya que no había tenido suficiente experiencia previa con la herramienta.
 
 ## Prerrequisitos
 
