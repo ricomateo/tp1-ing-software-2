@@ -8,7 +8,6 @@ test_image:
 
 start_server:
 	docker run --rm -it \
-		--network classconnect \
 		--name server \
 		-e HOST=$(HOST) \
 		-e PORT=$(PORT) \
