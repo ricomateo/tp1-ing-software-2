@@ -1,6 +1,14 @@
 # tp1-ing-software-2
 
-// TODO: tabla de contenidos
+# Tabla de contenidos
+
+1. [Introducción](#introducción)
+2. [Lo más desafiante del proyecto](#lo-más-desafiante-del-proyecto)
+3. [Prerrequisitos](#prerrequisitos)
+4. [Tests](#tests)
+5. [Comandos para buildear las imágenes](#comandos-para-buildear-las-imágenes)
+6. [Cómo levantar el servicio](#cómo-levantar-el-servicio)
+7. [Cómo correr los tests](#cómo-correr-los-tests)
 
 ## Introducción
 
@@ -18,11 +26,21 @@ En mi caso lo que me resultó más desafiante fue Docker, ya que no había tenid
 
 ## Prerrequisitos
 
-// TODO
+Los requisitos para levantar el entorno de desarrollo son:
+
+* Go (versión 1.23.2)
+* Docker
+* Docker Compose
 
 ## Tests
 
-// TODO
+Se utilizó la librería [net/http](https://pkg.go.dev/net/http) para los tests E2E del servicio.
+
+La librería permite instanciar un cliente HTTP y hacer requests, lo cual es justo lo que necesitamos para testear el servicio.
+
+En los tests se realizan requests a cada uno de los endpoints, probando los distintos casos y chequeando tanto las respuestas como los status code.
+
+Las instrucciones para ejecutar los tests se encuentran en la sección [Cómo correr los tests](#cómo-correr-los-tests).
 
 ## Comandos para buildear las imágenes
 
