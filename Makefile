@@ -4,7 +4,7 @@ server_image:
 	docker build . -f Dockerfile -t server
 
 test_image:
-	docker build . -f test.Dockerfile -t test
+	docker build . -f Dockerfile.test -t test
 
 start_server:
 	docker run --rm -it \
