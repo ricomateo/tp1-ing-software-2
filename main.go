@@ -5,21 +5,19 @@ import (
 )
 
 func main() {
-	logger := log.Default()
-
 	host, err := GetEnvVar("HOST")
 	if err != nil {
-		logger.Print("Error: ", err)
+		log.Fatal("Error: ", err)
 	}
 	port, err := GetEnvVar("PORT")
 	if err != nil {
-		logger.Print("Error: ", err)
+		log.Fatal("Error: ", err)
 	}
 	environment, err := GetEnvVar("ENVIRONMENT")
 	if err != nil {
-		logger.Print("Error: ", err)
+		log.Fatal("Error: ", err)
 	}
 
-	logger.Println("Enviroment: ", environment)
+	log.Println("Enviroment: ", environment)
 	StartService(host, port)
 }
